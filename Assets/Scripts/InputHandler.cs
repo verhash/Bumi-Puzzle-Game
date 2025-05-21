@@ -18,6 +18,8 @@ public void OnClick(InputAction.CallbackContext context)
 
         if (!rayHit.collider) return;
 
-        Debug.Log(rayHit.collider.gameObject.name);
+        GameObject clickedObject = rayHit.collider.gameObject;
+
+        Destroy(clickedObject);
     }
 }
