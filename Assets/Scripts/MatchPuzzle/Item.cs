@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Items : MonoBehaviour
+public class Item : MonoBehaviour
 {
     public ItemType itemType;
 
@@ -15,7 +15,7 @@ public class Items : MonoBehaviour
     private Vector2 currentPos;
     private Vector2 targetPos;
 
-    public Items(int x, int y)
+    public Item(int x, int y)
     {
         xIndex = x;
         yIndex = y;
@@ -27,11 +27,17 @@ public class Items : MonoBehaviour
         yIndex = y;
     }
 
+    // MoveToTarget
+
+    // MoveCouroutine
+
 }
 
 public enum ItemType
 {
     Cookie,
     Candy,
-    Donut
+    Donut,
+    Cake,
+    Muffin
 }

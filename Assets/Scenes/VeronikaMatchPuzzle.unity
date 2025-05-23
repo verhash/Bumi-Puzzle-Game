@@ -171,7 +171,19 @@ MonoBehaviour:
   - {fileID: 8671119269785382871, guid: 52e1672bc5f841b45aa7c31f542e3731, type: 3}
   - {fileID: 8727836604926415235, guid: 2105a4e46f6172448b88a1194c8232db, type: 3}
   - {fileID: 8268835456273890886, guid: 21b1f6d13dcc9dc4696e15cb06b90a53, type: 3}
+  - {fileID: 5753331813093602337, guid: 5acfdf6cdd12c6f489f4b9e52a64763c, type: 3}
+  - {fileID: 2410862165162191228, guid: 84a84e8cacc7a784fb18226f77837869, type: 3}
   matchBoardGO: {fileID: 1321598872}
+  arrayLayout:
+    rows:
+    - row: 000000000000
+    - row: 000000000000
+    - row: 000000000000
+    - row: 000000000000
+    - row: 000000000000
+    - row: 000000000000
+    - row: 000000000000
+    - row: 000000000000
 --- !u!1 &1825571894
 GameObject:
   m_ObjectHideFlags: 0
