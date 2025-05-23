@@ -142,6 +142,7 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
     private bool SwapIfValid(int i, int offset, int colCheck)
     {
         if (((i % size) != colCheck) && ((i + offset) == emptySlot))
