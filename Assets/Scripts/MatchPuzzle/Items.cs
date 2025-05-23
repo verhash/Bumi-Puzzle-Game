@@ -21,6 +21,12 @@ public class Items : MonoBehaviour
         yIndex = y;
     }
 
+    public void SetIndicies(int x, int y)
+    {
+        xIndex = x;
+        yIndex = y;
+    }
+
 }
 
 public enum ItemType
