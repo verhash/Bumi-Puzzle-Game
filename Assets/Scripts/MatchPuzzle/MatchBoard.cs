@@ -55,7 +55,6 @@ public class MatchBoard : MonoBehaviour
                 Debug.Log("I have clicked an item, it is: " + item.gameObject);
 
                 SelectItem(item);
-                
             }
         }
     }
@@ -140,7 +139,7 @@ public class MatchBoard : MonoBehaviour
 
                         if (matchedItems.connectedItems.Count >= 3)
                         {
-                            // TODO - Complex matching
+                            MatchResult superMatchedItems = superMatch(matchedItems);
 
                             itemsToRemove.AddRange(matchedItems.connectedItems);
 
@@ -313,8 +312,6 @@ public class MatchBoard : MonoBehaviour
         }
 
         DoSwap(currentItem, targetItem);
-
-
 
         isProcessingMove = true;
 
