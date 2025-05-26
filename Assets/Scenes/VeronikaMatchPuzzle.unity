@@ -163,6 +163,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14ef1edc97baaef4a93b4f747c89e13f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectedItem: {fileID: 0}
+  isProcessingMove: 0
   width: 6
   height: 8
   spacingX: 0
@@ -174,6 +176,7 @@ MonoBehaviour:
   - {fileID: 5753331813093602337, guid: 5acfdf6cdd12c6f489f4b9e52a64763c, type: 3}
   - {fileID: 2410862165162191228, guid: 84a84e8cacc7a784fb18226f77837869, type: 3}
   matchBoardGO: {fileID: 1321598872}
+  itemsToDestroy: []
   arrayLayout:
     rows:
     - row: 000000000000

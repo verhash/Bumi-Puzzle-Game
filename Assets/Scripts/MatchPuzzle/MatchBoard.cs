@@ -39,6 +39,27 @@ public class MatchBoard : MonoBehaviour
         InitializeBoard();
     }
 
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
+
+            if (hit.collider != null && hit.collider.gameObject.GetComponent<Item>())
+            {
+                if (isProcessingMove)
+                    return;
+
+                Item item = hit.collider.gameObject.GetComponent<Item>();
+                Debug.Log("I have clicked an item, it is: " + item.gameObject);
+
+                SelectItem(item);
+                
+            }
+        }
+    }
+
     void InitializeBoard()
     {
 
@@ -283,22 +304,57 @@ public class MatchBoard : MonoBehaviour
 
     // Swap item - logic
 
-    private void SwapItem(Item item, Item targetItem)
+    private void SwapItem(Item currentItem, Item targetItem)
     {
         // !IsAdjacent don't do anything
-        /*if (!IsAdjacent(currentItem, targetItem))
+        if (!IsAdjacent(currentItem, targetItem))
         {
             return;
-        }*/
+        }
 
-        // DoSwap
+        DoSwap(currentItem, targetItem);
+
+
 
         isProcessingMove = true;
 
-        //startCorouting ProcessMatches
+        StartCoroutine(ProcessMatches(currentItem, targetItem));
     }
 
     // Do swap
+    private void DoSwap(Item currentItem, Item targetItem)
+    {
+        GameObject temp = matchBoard[currentItem.xIndex, currentItem.yIndex].item;
+
+        matchBoard[currentItem.xIndex, currentItem.yIndex].item = matchBoard[targetItem.xIndex, targetItem.yIndex].item;
+        matchBoard[targetItem.xIndex, targetItem.yIndex].item = temp;
+
+        //Update indices
+        int tempX = currentItem.xIndex;
+        int tempY = currentItem.yIndex;
+        currentItem.xIndex = targetItem.xIndex;
+        currentItem.yIndex = targetItem.yIndex;
+        targetItem.xIndex = tempX; //tempXIndex?
+        targetItem.yIndex = tempY; //tempYIndex?
+
+        currentItem.MoveToTarget(matchBoard[targetItem.xIndex, targetItem.yIndex].item.transform.position);
+
+        targetItem.MoveToTarget(matchBoard[currentItem.xIndex, currentItem.yIndex].item.transform.position);
+    }
+
+    private IEnumerator ProcessMatches(Item currentItem, Item targetItem)
+    {
+        yield return new WaitForSeconds(0.2f);
+
+        bool hasMatch = CheckBoard();
+
+        if(hasMatch)
+        {
+            DoSwap(currentItem, targetItem);
+        }
+
+        isProcessingMove = false;
+    }
 
     // IsAdjacent
     private bool IsAdjacent(Item currentItem, Item targetItem)

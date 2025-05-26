@@ -28,8 +28,36 @@ public class Item : MonoBehaviour
     }
 
     // MoveToTarget
+    public void MoveToTarget(Vector2 targetPos)
+    {
+
+        StartCoroutine(MoveCoroutine(targetPos));
+    }
 
     // MoveCouroutine
+    private IEnumerator MoveCoroutine(Vector2 targetPos)
+    {
+        isMoving = true;
+        float duration = 0.2f;
+
+        Vector2 startPos = transform.position;
+        float elapsedTime = 0f;
+
+
+        while (elapsedTime < duration)
+        {
+            float t = elapsedTime / duration;
+
+            transform.position = Vector2.Lerp(startPos, targetPos, t);
+
+            elapsedTime += Time.deltaTime;
+
+            yield return null;
+        }
+        transform.position = targetPos;
+        isMoving = false;
+    }
+
 
 }
 
